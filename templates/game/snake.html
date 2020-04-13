@@ -1,0 +1,83 @@
+{% load static %}
+{% static "game/home/img" as baseUrl %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>Lets fun time </title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="{% static 'game/home/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+
+  <!-- Custom styles for this template -->
+  <link href="{% static 'game/home/css/heroic-features.css' %}" rel="stylesheet">
+
+</head>
+
+<body>
+
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+    <div class="container">
+      <a class="navbar-brand" href="#">{{prize}}</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="#">Home 
+              <span class="sr-only">(current)</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'downloads' %}">Downloads</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Games</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'chat' %}">Chat</a>
+          </li>
+        
+          <!--  user logout -->
+          {% if user.is_authenticated %}
+          <li>
+            <a class="nav-link" >
+               Hi, {{user.first_name}} 
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="accounts/logout">Logout</a>
+          </li>
+          {% else %}
+          <li class="nav-item">
+            <a class="nav-link" href="accounts/register">Sign Up/Login</a>
+          </li>
+          {% endif %}
+
+
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Page Content -->
+  <div class="container">
+
+
+<link rel="stylesheet" href="{% static 'game/snake/style.css' %}">
+<script src="{% static 'game/snake/main.js' %}"></script>
+</head>
+<body>
+    <h1>Hello</h1>
+    <canvas id="canvas" width="400" height="400"></canvas>
+</body>
+</html>

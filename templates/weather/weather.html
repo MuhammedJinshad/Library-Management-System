@@ -1,0 +1,42 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+      <!-- Bootstrap core CSS -->
+  <link href="{% static 'game/home/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+
+  <!-- Custom styles for this template -->
+  <link href="{% static 'game/home/css/heroic-features.css' %}" rel="stylesheet">
+</head>
+<body>
+    <div>
+        <h2 class="text-primary">What's the weather Like</h2>
+
+        <form action="" method="POST">
+            {% csrf_token %}
+         <button type="submit" class="button is-info">Add City
+            {{form.name}}
+        </form> 
+
+        
+
+        {% for city_weather in weather_data %}
+
+    </div>
+    <img src="http://openweathermap.org/img/w/{{ city_weather.icon }}.png" alt="image">
+    <div><p>
+        <span class="title">{{ city_weather.city }}</span><br>
+        <span class="subtitle">{{ city_weather.temperature }}%</span><br>
+        {{city_weather.description}}
+        
+    </p></div>
+    {% endfor%}
+
+</body>
+  <!-- Bootstrap core JavaScript -->
+  <script src="{% static 'game/home/vendor/jquery/jquery.min.js' %}"></script>
+  <script src="{% static 'game/home/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+</html>

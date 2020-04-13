@@ -1,0 +1,132 @@
+{% load static %}
+{% static "game/home/img" as baseUrl %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>Lets fun time </title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="{% static 'game/home/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+
+  <!-- Custom styles for this template -->
+  <link href="{% static 'game/home/css/heroic-features.css' %}" rel="stylesheet">
+
+</head>
+
+<body>
+
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+    <div class="container">
+      <a class="navbar-brand" href="#">{{prize}}</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="#">Home 
+              <span class="sr-only">(current)</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'downloads' %}">Downloads</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Games</a>
+          </li>
+          <li class="nav-item">
+            
+          </li>
+        
+          <!--  user logout -->
+          {% if user.is_authenticated %}
+          <li>
+            <a class="nav-link" >
+               Hi, {{user.first_name}} 
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="accounts/logout">Logout</a>
+          </li>
+          {% else %}
+          <li class="nav-item">
+            <a class="nav-link" href="accounts/register">Sign Up/Login</a>
+          </li>
+          {% endif %}
+
+
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Page Content -->
+  <div class="container">
+
+    <!-- Jumbotron Header -->
+    <header class="jumbotron my-4">
+      <h1 class="display-3">Enjoy The Sound Of Silence.!</h1>
+      <p class="lead">letsfun.com is the best place to go if you're searching for a variety of popular free games to play online. At Agame we add new online games Every day!</p>
+      <a href="#" class="btn btn-primary btn-lg">Play Now!</a>
+    </header>
+
+    
+    <!-- Page Features -->
+    <div class="row text-center">
+      {% for dets in dets %}
+      <div class="col-lg-3 col-md-6 mb-4">
+        <div class="card h-100">
+          <img class="card-img-top" src="{{dets.img.url}}" alt="">
+          <div class="card-body">
+            <h4 class="card-title">{{dets.name}} </h4>
+            <p class="card-text">{{dets.desc}}.</p>
+          </div>
+          <div class="card-footer">
+
+            {% if user.is_authenticated%}
+
+            <a href="{{url}}/{{dets.link}}" class="btn btn-primary">Play Free Now !</a>
+
+            {% else %}
+
+
+            <a href="{% url 'login' %}" class="btn btn-primary">Play Free Now !</a>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+
+  
+   
+    </div>
+    <!-- /.row -->
+
+
+  </div>
+  <!-- /.container -->
+
+  <!-- Footer -->
+  <footer class="py-5 bg-dark">
+    <div class="container">
+      <p class="m-0 text-center text-white">Copyright &copy; letsfun.com 2020</p>
+    </div>
+    <!-- /.container -->
+  </footer>
+
+  <!-- Bootstrap core JavaScript -->
+  <script src="{% static 'game/home/vendor/jquery/jquery.min.js' %}"></script>
+  <script src="{% static 'game/home/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+
+</body>
+
+</html>

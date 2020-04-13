@@ -1,0 +1,71 @@
+
+ {% load static %}
+ <!DOCTYPE html>
+ <html lang="en">
+ 
+ <head>
+ 
+   <meta charset="utf-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+   <meta name="description" content="">
+   <meta name="author" content="">
+ 
+   <title>Library Management System</title>
+ 
+   <!-- Bootstrap core CSS -->
+   <link href="{% static 'library/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+ 
+   <!-- Custom styles for this template -->
+   <link href="{% static 'library/css/business-frontpage.css' %}" rel="stylesheet">
+ 
+ </head>
+ 
+ <body>
+ 
+   <!-- Navigation -->
+   <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+     <div class="container">
+       <a class="navbar-brand" href="#">Library Management System</a>
+       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+         <span class="navbar-toggler-icon"></span>
+       </button>
+       <div class="collapse navbar-collapse" id="navbarResponsive">
+         <ul class="navbar-nav ml-auto">
+          </ul></div></div></nav>
+          
+          <div class="container"><h2>Your Booking Historys</h2></div>
+
+          <div>
+
+           <div class="container">
+            <table border="1">
+
+                <th> Name </th>
+                <th> Book Name </th>
+                <th> email </th>
+                <th> ID </th>
+                {% for history in history %}
+               <tr> 
+                   <td>{{history.student_name}} </td>
+                  <td> {{history.book_name}}</td>
+                   <td> {{history.email}} </td>
+                    <td>{{history.id}}</td>
+               <br></tr>
+                {% endfor %}
+               
+
+
+            </table>
+        </div>
+
+
+          </div>
+ 
+ 
+ <!-- Bootstrap core JavaScript -->
+  <script src="{% static 'library/vendor/jquery/jquery.min.js' %}"></script>
+  <script src="{% static 'library/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+
+</body>
+
+</html>

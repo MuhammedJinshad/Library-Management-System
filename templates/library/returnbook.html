@@ -1,0 +1,71 @@
+{% extends 'library/base/base.html' %}
+
+{% block content %}
+
+
+<!-- Header -->
+<header class="bg-primary py-5 mb-5">
+    <div class="container h-100">
+      <div class="row h-100 align-items-center">
+        <div class="col-lg-12">
+          <h1 class="display-4 text-white mt-5 mb-2">Return Your Book</h1>
+          <p class="lead mb-5 text-white-50"> <a href="{% url 'issuebook' %}"><button class="btn btn-primary">Issue Book</button></a> </p>
+        </div>
+        
+      </div>
+    </div>
+  </header> 
+
+<body>
+<div class="container">
+       
+                <form  action="{% url 'returnbook' %}" method="POST">
+                {% csrf_token %}
+                
+                <label for="exampleFormControlSelect2">Select Student </label>
+                <select class="form-control" name="issuedusername" id="exampleFormControlSelect2">
+                {% for username in issues %}
+                <option value="{{username.id}}">{{username.username.first_name}}  <br>
+                Book Name :{{username.book_name.book_name}}</option>
+                {% endfor %}
+                </select>
+
+                {% for message in messages %}
+                <p class="text-primary">{{message}}</p>
+                {% endfor %}
+                
+                <br> <input type="submit" class="btn btn-primary" value="return" >
+                
+                </form></div><br>
+
+
+
+                <div class="container"> 
+                        
+                <div class="table-responsive">
+                        <table class="table table-striped table-bordered table-hover table-condensed">
+                              <th>Student Name </th>
+                              <th>phonenumber</th>
+                              <th>Book Details</th>
+                              <th>Issued Time</th>
+              
+                              {% for issue in issues %}
+                              <tr>
+                              <td>{{issue.username.first_name}}</td>
+                              <td>{{issue.username.phonenumber}}</td>
+                              <td>{{issue.book_name.book_name}}</td>
+                              <td>{{issue.datetime}}</td>
+                             
+                              </tr>
+                              {% endfor %}
+                          </div> 
+                  </div>
+                  </div>
+                </div>
+
+                
+</div>
+</body>
+
+
+{% endblock %}
